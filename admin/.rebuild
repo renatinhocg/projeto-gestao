@@ -1,0 +1,3 @@
+# Force rebuild
+# This file is just to trigger a new deployment
+# Railway will rebuild with the new VITE_API_URL environment variable
