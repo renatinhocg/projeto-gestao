@@ -16,13 +16,23 @@ const prisma = new PrismaClient()
 
 // CORS configuration for production
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'http://localhost:3000',
-    'https://admin-production-462d.up.railway.app',
-    'https://frontend-production-462d.up.railway.app'
-  ],
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'http://localhost:3000',
+      'https://admin-production-462d.up.railway.app',
+      'https://frontend-production-462d.up.railway.app'
+    ]
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('Not allowed by CORS'), false)
+    }
+    return callback(null, true)
+  },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   exposedHeaders: ['Content-Range', 'X-Total-Count']
 }))
 app.use(express.json({ limit: '5mb' }))
