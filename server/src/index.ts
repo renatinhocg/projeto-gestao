@@ -15,6 +15,7 @@ const port = process.env.PORT || 4000
 const prisma = new PrismaClient()
 
 // CORS configuration for production - temporarily permissive for debugging
+console.log('🔧 CORS Configuration: Allowing all origins (permissive mode)')
 app.use(cors({
   origin: true, // Allow all origins temporarily
   credentials: true,
@@ -1214,5 +1215,7 @@ app.post('/api/webhooks/escavador', async (req, res) => {
 
 app.listen(port, async () => {
   await migrateOrphanData()
-  console.log(`Server running on port ${port}`)
+  console.log(`🚀 Server running on port ${port}`)
+  console.log(`📅 Started at: ${new Date().toISOString()}`)
+  console.log(`✅ CORS: Permissive mode active`)
 })
