@@ -14,6 +14,25 @@ const app = express()
 const port = process.env.PORT || 4000
 const prisma = new PrismaClient()
 
+// Manual CORS headers to ensure they're always set
+app.use((req, res, next) => {
+  const origin = req.headers.origin
+  if (origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
+  res.setHeader('Access-Control-Allow-Credentials', 'true')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count')
+
+  // Handle preflight
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  next()
+})
+
 // CORS configuration for production - temporarily permissive for debugging
 console.log('🔧 CORS Configuration: Allowing all origins (permissive mode)')
 app.use(cors({
