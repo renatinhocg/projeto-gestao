@@ -1228,9 +1228,13 @@ app.post('/api/webhooks/escavador', async (req, res) => {
   }
 })
 
-app.listen(port, async () => {
-  await migrateOrphanData()
-  console.log(`🚀 Server running on port ${port}`)
-  console.log(`📅 Started at: ${new Date().toISOString()}`)
-  console.log(`✅ CORS: Permissive mode active`)
+app.listen(Number(port), '0.0.0.0', async () => {
+  try {
+    await migrateOrphanData()
+    console.log(`🚀 Server running on port ${port} (0.0.0.0)`)
+    console.log(`📅 Started at: ${new Date().toISOString()}`)
+    console.log(`✅ Server ready to accept connections`)
+  } catch (err) {
+    console.error('❌ Error during startup migration:', err)
+  }
 })
