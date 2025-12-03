@@ -20,8 +20,8 @@ app.use(cors({
     const allowedOrigins = [
       'http://localhost:5173',
       'http://localhost:3000',
-      'https://admin-production-462d.up.railway.app',
-      'https://frontend-production-462d.up.railway.app'
+      'https://admin-production-4620.up.railway.app',
+      'https://frontend-production-4620.up.railway.app'
     ]
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true)
