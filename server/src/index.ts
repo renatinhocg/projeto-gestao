@@ -15,6 +15,13 @@ const port = process.env.PORT || 4000
 const prisma = new PrismaClient()
 
 app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://admin-production-462d.up.railway.app',
+    'https://frontend-production-462d.up.railway.app'
+  ],
+  credentials: true,
   exposedHeaders: ['Content-Range', 'X-Total-Count']
 }))
 app.use(express.json({ limit: '5mb' }))
