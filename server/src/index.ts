@@ -8,45 +8,6 @@ import multer from 'multer'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { v4 as uuidv4 } from 'uuid'
 import fs from 'fs'
-import path from 'path'
-
-const app = express()
-const port = process.env.PORT || 4000
-const prisma = new PrismaClient()
-
-// Manual CORS headers to ensure they're always set
-app.use((req, res, next) => {
-  const origin = req.headers.origin
-  if (origin) {
-    res.setHeader('Access-Control-Allow-Origin', origin)
-  }
-  res.setHeader('Access-Control-Allow-Credentials', 'true')
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
-  res.setHeader('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count')
-
-  // Handle preflight
-  if (req.method === 'OPTIONS') {
-    res.status(200).end()
-    return
-  }
-  next()
-})
-
-// CORS configuration for production - temporarily permissive for debugging
-console.log('🔧 CORS Configuration: Allowing all origins (permissive mode)')
-app.use(cors({
-  origin: true, // Allow all origins temporarily
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['Content-Range', 'X-Total-Count']
-}))
-app.use(express.json({ limit: '5mb' }))
-
-const UPLOADS_DIR = path.join(process.cwd(), 'uploads')
-if (!fs.existsSync(UPLOADS_DIR)) {
-  fs.mkdirSync(UPLOADS_DIR)
 }
 app.use('/uploads', express.static(UPLOADS_DIR))
 
