@@ -14,6 +14,7 @@ const app = express()
 const port = process.env.PORT || 4000
 const prisma = new PrismaClient()
 
+// CORS configuration for production
 app.use(cors({
   origin: [
     'http://localhost:5173',
