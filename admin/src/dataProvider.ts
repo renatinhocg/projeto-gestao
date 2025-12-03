@@ -11,6 +11,8 @@ const httpClient = (url: string, options: any = {}) => {
   if (token) {
     (options.headers as Headers).set('Authorization', `Bearer ${token}`)
   }
+  // Add credentials for CORS
+  options.credentials = 'include'
   return fetchUtils.fetchJson(url, options)
 }
 

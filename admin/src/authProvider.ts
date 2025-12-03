@@ -5,6 +5,7 @@ const authProvider: AuthProvider = {
     const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
       body: JSON.stringify({ email: username, password })
     })
     if (!res.ok) throw new Error('Login failed')
@@ -40,7 +41,8 @@ const authProvider: AuthProvider = {
 
       // Fetch user data from API
       const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000'}/users/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
+        credentials: 'include'
       })
 
       if (!res.ok) return Promise.reject()
