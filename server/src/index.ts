@@ -142,7 +142,7 @@ app.post('/s3/upload', authMiddleware, upload.single('file'), async (req, res) =
 app.post('/users/:id/photo', authMiddleware, upload.single('file'), async (req, res) => {
   try {
     const id = Number(req.params.id)
-    const requesterId = Number(req.user.sub)
+    const requesterId = Number(req.user?.sub)
     // only allow admin or owner
     if (!requesterId) return res.status(401).json({ error: 'unauthorized' })
     const requester = await prisma.user.findUnique({ where: { id: requesterId } })
@@ -297,7 +297,7 @@ app.get('/assignees', authMiddleware, async (req, res) => {
 app.put('/users/:id', authMiddleware, async (req, res) => {
   try {
     const id = Number(req.params.id)
-    const requesterId = Number(req.user.sub)
+    const requesterId = Number(req.user?.sub)
     const requester = await prisma.user.findUnique({ where: { id: requesterId } })
     if (!requester) return res.status(401).json({ error: 'unauthorized' })
 
@@ -335,7 +335,7 @@ app.put('/users/:id', authMiddleware, async (req, res) => {
 app.get('/users/:id', authMiddleware, async (req, res) => {
   try {
     const id = Number(req.params.id)
-    const requesterId = Number(req.user.sub)
+    const requesterId = Number(req.user?.sub)
     const requester = await prisma.user.findUnique({ where: { id: requesterId } })
     if (!requester) return res.status(401).json({ error: 'unauthorized' })
 
