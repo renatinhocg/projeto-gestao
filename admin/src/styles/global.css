@@ -1,0 +1,17 @@
+:root {
+  --header-height-sm: 64px;
+  --header-height-md: 84px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Remove global top padding — we offset content using the sidebar/menu and layout instead */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--ra-theme-background, #F7F9FF);
+}
+
+/* If needed, specific components can be offset individually (e.g., sidebar inner panel already uses mt). */

@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2025-11-30T00:00:00Z",
+  "note": "Screenshots for the requested Figma nodes were captured via the design API tool and are available in the assistant session. Add actual PNGs here if you want them stored in the repo.",
+  "nodes": [
+    { "nodeId": "201:2101", "file": "201-2101.png" },
+    { "nodeId": "201:2093", "file": "201-2093.png" },
+    { "nodeId": "201:1809", "file": "201-1809.png" },
+    { "nodeId": "201:1834", "file": "201-1834.png" },
+    { "nodeId": "201:1871", "file": "201-1871.png" },
+    { "nodeId": "201:1970", "file": "201-1970.png" },
+    { "nodeId": "201:2027", "file": "201-2027.png" }
+  ]
+}
