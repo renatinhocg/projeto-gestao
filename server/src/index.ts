@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 
   res.setHeader('Access-Control-Allow-Credentials', 'true')
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH')
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Range')
   res.setHeader('Access-Control-Expose-Headers', 'Content-Range, X-Total-Count')
 
   // Handle preflight
